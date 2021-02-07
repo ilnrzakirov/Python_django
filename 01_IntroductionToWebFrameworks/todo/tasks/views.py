@@ -1,3 +1,4 @@
+import random
 from django.http import HttpResponse
 
 from django.views import View
@@ -6,10 +7,9 @@ from django.views import View
 class ToDoView(View):
 
     def get(self, request, *args, **kwargs):
-        return HttpResponse('<ul>'
-                            '<li>Установить python</li>'
-                            '<li>Установить django</li>'
-                            '<li>Запустить сервер</li>'
-                            '<li>Порадоваться результату</li>'
-                            '<li>Порадоваться результату еще раз</li>'
-                            '</ul>')
+        l1 = ['Установить python', 'Установить django', 'Запустить сервер', 'Написать код', 'Порадоваться результату',
+              'Посмотреть что получилось', 'Порадоваться еще раз', 'Задать суперпользователя']
+        response = "<ul><li>" + random.choice(l1) + "</li><li>" + random.choice(l1) + '</li><li>' + random.choice(l1) + '</li><li>' + random.choice(l1) + '</li><li>' + random.choice(l1) + '</li></ul>'
+
+
+        return HttpResponse(response)
