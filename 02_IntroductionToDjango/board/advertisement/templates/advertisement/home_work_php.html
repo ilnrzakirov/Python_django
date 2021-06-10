@@ -1,0 +1,15 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href="{% url 'advertisement_list' %}">Назад</a>
+    <a href="{% url 'CoursePHP' %}">Ссылка на курс</a>
+    <h1>Профессия PHP-разработчик</h1>
+    <p>Решение задачи 100 руб.</p>
+    <img src="{% static "php.jpg" %}">
+</body>
+</html>
