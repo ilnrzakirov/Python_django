@@ -59,3 +59,8 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['category'] = ['категория 1', 'категория 2']
+        context['region'] = ['116', '777']
+        return context
+
+

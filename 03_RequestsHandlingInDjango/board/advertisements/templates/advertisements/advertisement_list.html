@@ -1,7 +1,13 @@
-<html>
-<ul>
-    <li>Мастер на час</li>
-    <li>Выведение из запоя</li>
-    <li>Услуги экскаватора-погрузчика, гидромолота, ямобура</li>
-</ul>
-</html>
+<form>
+    <p><b>Выберите параметры для поиска:</b></p>
+    <p><b>Выберите категорию:</b></p>
+    {% for elem in category %}
+    <p><input type="radio" name="answer" value="elem">{{elem}}<Br></p>
+    {% endfor %}
+    <p><b>Выберите регион:</b></p>
+    {% for elem in region %}
+    <p><input type="radio" name="answer" value="elem">{{elem}}<Br></p>
+    {% endfor %}
+    <p><input type="text" name="userName" placeholder="Введите название объявления" size="36" /></p>
+    <p><input type="submit"></p>
+</form>
