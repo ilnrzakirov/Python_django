@@ -1,6 +1,7 @@
 import requests
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.http import HttpResponse
 
 advertisements = [
     'Мастер на час',
@@ -35,6 +36,9 @@ class Advertisement(TemplateView):
         context['list'] = advertisements
         context['views'] = count
         return context
+
+    def post(self, **kwargs):
+        return HttpResponse('Запрос на создание новой записи успешно выполнен')
 
 
 class Contacts(TemplateView):
