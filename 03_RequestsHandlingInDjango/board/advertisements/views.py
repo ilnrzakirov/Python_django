@@ -1,7 +1,8 @@
 import requests
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 from django.http import HttpResponse
+from .models import Advertisements
 
 advertisements = [
     'Мастер на час',
@@ -10,19 +11,9 @@ advertisements = [
     'Электрик'
 ]
 
-def advertisement_list(request, *args, **kwargs):
-    advertisements = [
-        'Мастер на час',
-        'Выведение из запоя',
-        'Услуги экскаватора-погрузчика, гидромолота, ямобура'
-    ]
-    advertisements_1 = [
-        'Мастер на час',
-        'Выведение из запоя',
-        'Услуги экскаватора-погрузчика, гидромолота, ямобура'
-    ]
-    return render(request, 'advertisements/advertisement_list.html', {'advertisements': advertisements,
-                                                                      'advertisements_1': advertisements_1})
+# def advertisement_list(request, *args, **kwargs):
+#     advertisements = Advertisements.object.all()
+#     return render(request, 'advertisements/advertisements.html', {'advertisements': advertisements})
 
 count = 0
 
@@ -67,4 +58,13 @@ class Index(TemplateView):
         context['region'] = ['116', '777']
         return context
 
+class AdvertisementsListView(ListView):
+    model = Advertisements
+    template_name = 'advertisements/advertisements_list_view.html'
+    context_object_name = 'advertisement_list'
+    queryset = Advertisements.objects.all()[:8]
 
+
+class AdvertisementDetailView(DetailView):
+    model = Advertisements
+    template_name = 'advertisements/advertisement_detail.html'
