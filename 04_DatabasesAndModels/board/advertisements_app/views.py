@@ -8,9 +8,12 @@ class AdvertisementsListView(ListView):
     model = Advertisements
     template_name = 'advertisements/advertisements.html'
     context_object_name = 'advertisement_list'
-    queryset = Advertisements.objects.all()[:8]
+    queryset = Advertisements.objects.all()
 
 
 class AdvertisementDetailView(DetailView):
     model = Advertisements
     template_name = 'advertisements/advertisement_detail.html'
+
+    def get_object(self, queryset=None):
+        count = self.

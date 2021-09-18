@@ -10,7 +10,7 @@
 <ul>
     {% for advertisement in advertisement_list %}
     <li>
-        <a href="/advertisements/{{ advertisement.id }}">{{ advertisement.title }}</a> <strong>|</strong>
+        <a href="{% url 'advertisement-detail' advertisement.pk %}">{{ advertisement.title }}</a> <strong>|</strong>
         <strong>Цена: {{ advertisement.price }} руб. | Рубрика: {{ advertisement.category }}</strong>
     </li>
     {% endfor %}
