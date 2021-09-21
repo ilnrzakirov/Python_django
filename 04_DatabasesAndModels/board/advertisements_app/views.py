@@ -16,4 +16,7 @@ class AdvertisementDetailView(DetailView):
     template_name = 'advertisements/advertisement_detail.html'
 
     def get_object(self, queryset=None):
-        count = self.
+        obj = super().get_object(queryset)
+        obj.views_count += 1
+        obj.save()
+        return obj
