@@ -36,3 +36,10 @@ class NewsCreate(View):
     def get(self, request):
         form = NewsForm()
         return render(request, 'news/news_create.html', context={'form': form})
+
+    def post(self, request):
+        form = NewsForm(request.POST)
+        if form.is_valid():
+            News.objects.create(**form.cleaned_data)
+            return redirect('news')
+        return render(request,  'news/news_create.html', context={'form': form})

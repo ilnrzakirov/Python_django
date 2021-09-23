@@ -13,7 +13,6 @@ class NewsForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'cols': 70, 'rows': 10})
         }
 
-
 class NewsCommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
