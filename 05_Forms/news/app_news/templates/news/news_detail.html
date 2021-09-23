@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ news.name }}</title>
+</head>
+<body>
+<h1>{{ news.name }}</h1>
+<p>{{ news.created_at }}</p>
+<p>{{ news.description }}</p>
+
+{% if comment %}
+<h4>Коментарии:</h4>
+<ul>
+    {% for item in comment %}
+    <li>
+        <p>{{ item.username }}</p>
+        <p>{{ item.comment_text }}</p>
+    </li>
+    {% endfor %}
+{% else %}
+<p>Коментариев нет</p>
+{% endif %}
+</ul>
+<h6>Добавить коментарий</h6>
+<form action="{% url 'news-detail' pk %}" method="post">
+    {% csrf_token %}
+{{ add_comment.as_p }}
+<button type="submit">Добавить</button>
+</form>
+</body>
+</html>

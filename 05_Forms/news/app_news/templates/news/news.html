@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новости</title>
+</head>
+<body>
+    <h1>Новости</h1>
+    <a href="{% url 'news-create' %}" type="get">Добавить новость</a>
+    {% if news %}
+    <ul>
+        {% for item in news %}
+        <li>
+            <a href="{% url 'news-detail' item.pk %}">{{ item.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {%  else %}
+        <p>Новостей нет</p>
+    {% endif %}
+</body>
+</html>
