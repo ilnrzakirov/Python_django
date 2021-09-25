@@ -43,3 +43,10 @@ class NewsCreate(View):
             News.objects.create(**form.cleaned_data)
             return redirect('news')
         return render(request,  'news/news_create.html', context={'form': form})
+
+class NewsEdit(View):
+
+    def get(self, request, news_id):
+        news = News.objects.get(id = news_id)
+        form = NewsForm(instance=news)
+        return render(request, 'news/news_edit.html', context={"form": form, 'news_id': news_id})
