@@ -17,11 +17,18 @@ class NewsCommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].empty_label = "Автор не выбран"
-        self.fields['news'].empty_label = 'Выберите новость'
 
     class Meta:
         model = NewsComment
-        fields = ['username', 'comment_text', 'news']
+        fields = ['username', 'comment_text']
         widgets = {
-            'comment_text': forms.Textarea(attrs={'cols': 50, 'rows': 5})
+            'comment_text': forms.Textarea(attrs={'cols': 50, 'rows': 5}),
         }
+
+    def clean_news(self):
+        data = self.cleaned_data['news']
+        return data
+
+    def clean_username(self):
+        data = self.cleaned_data['username']
+        return data

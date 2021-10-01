@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import News, NewsComment
+from .models import News, NewsComment, User
 # Register your models here.
 
 
@@ -40,4 +40,6 @@ class NewsCommentAdmin(admin.ModelAdmin):
     deleted_by_the_administrator.short_description = "Удалить"
 
 
-
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    pass

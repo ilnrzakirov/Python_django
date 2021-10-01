@@ -5,6 +5,13 @@
     <title>Новости</title>
 </head>
 <body>
+       <div class="block-top-auth">
+           {% if request.user.is_authenticated %}
+           <p><a href="{% url 'logout' %}">Logout</a></p>
+           {% else %}
+           <p><a href="{% url 'login' %}">Login</a></p>
+           {% endif %}
+       </div>
     <h1>Новости</h1>
     <a href="{% url 'news-create' %}" type="get">Добавить новость</a>
     {% if news %}

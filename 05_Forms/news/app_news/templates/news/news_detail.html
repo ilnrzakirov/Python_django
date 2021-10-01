@@ -5,6 +5,7 @@
     <title>{{ news.name }}</title>
 </head>
 <body>
+<a href="{% url 'news-edit' pk=news.id %}">Редактировать</a>
 <h1>{{ news.name }}</h1>
 <p>{{ news.created_at }}</p>
 <p>{{ news.description }}</p>
@@ -25,7 +26,8 @@
 <h6>Добавить коментарий</h6>
 <form action="{% url 'news-detail' pk %}" method="post">
     {% csrf_token %}
-{{ add_comment.as_p }}
+    {{ add_comment.as_p }}
+
 <button type="submit">Добавить</button>
 </form>
 </body>

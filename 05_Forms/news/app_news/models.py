@@ -34,8 +34,8 @@ class User(models.Model):
 
 
 class NewsComment(models.Model):
-    username = models.ForeignKey('User', default=None, null=True, verbose_name="Имя пользователя",
-                                 on_delete=models.CASCADE)
+    username = models.CharField( default='Аноним',
+                                 max_length=50, verbose_name="Имя пользователя")
     comment_text = models.CharField(max_length=1000, default='')
     news = models.ForeignKey('News', on_delete=models.CASCADE,  null=True, verbose_name="новость",
                              default=None)
