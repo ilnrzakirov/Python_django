@@ -29,9 +29,7 @@ class NewsDetailFormView(View):
         news = News.objects.get(id=pk)
         history = NewsComment.objects.filter(news=news)
         comment = NewsCommentForm(request.POST)
-        if request.user.is_authenticated:
-            comment.instance.username = request.user.username
-            comment.instance.news = news
+        comment.instance.news = news
         if comment.is_valid():
             comment.save()
             return redirect('news')
