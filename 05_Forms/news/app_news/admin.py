@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import News, NewsComment, User
+from .models import News, NewsComment, User, Profile
 # Register your models here.
 
 
@@ -39,7 +39,6 @@ class NewsCommentAdmin(admin.ModelAdmin):
 
     deleted_by_the_administrator.short_description = "Удалить"
 
-
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    pass
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user', 'city', 'verification']

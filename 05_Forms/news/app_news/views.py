@@ -1,5 +1,6 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from .models import News, NewsComment, User
+from .models import News, NewsComment, User, Profile
 from django.views.generic import TemplateView, ListView, DetailView, View, CreateView, UpdateView
 from .forms import *
 from django.contrib.auth.views import LoginView, LogoutView
@@ -56,3 +57,29 @@ class LoginView(LoginView):
 class LogoutView(LogoutView):
     #template_name = "news/logout.html"
     next_page ='/news/'
+
+
+def register_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            phone = form.cleaned_data.get('phone')
+            city = form.cleaned_data.get('city')
+            Profile.objects.create(
+                user=user,
+                city=city,
+                phone=phone
+            )
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/news/')
+    else:
+        form = RegisterForm()
+    return render(request, 'news/register.html', context={'form': form})
+
+def profile_view(request):
+    form = Profile.objects.filter(user=request.user)
+    return render(request, 'news/profile.html', context={'form': form})

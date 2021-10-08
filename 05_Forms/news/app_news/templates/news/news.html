@@ -8,8 +8,10 @@
        <div class="block-top-auth">
            {% if request.user.is_authenticated %}
            <p><a href="{% url 'logout' %}">Logout</a></p>
+               <p><a href="{% url 'profile' %}">Профиль</a> </p>
            {% else %}
            <p><a href="{% url 'login' %}">Login</a></p>
+               <p><a href="{% url 'register' %}">Регистрация</a> </p>
            {% endif %}
        </div>
     <h1>Новости</h1>
