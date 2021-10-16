@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, redirect
 from .models import News, NewsComment, User, Profile
 from django.views.generic import TemplateView, ListView, DetailView, View, CreateView, UpdateView
@@ -37,9 +38,12 @@ class NewsDetailFormView(View):
         return render(request, 'news/news_detail.html', context={'news': news, 'comment': history,
                                                                  'add_comment': comment, 'pk': pk})
 
-class NewsCreate(CreateView):
+class NewsCreate(UserPassesTestMixin, CreateView):
     form_class = NewsForm
     template_name = 'news/news_create.html'
+
+    def test_func(self):
+        return self.request.user.profile.verification == True
 
 
 class NewsEdit(UpdateView):
