@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 from .models import News, NewsComment
 
 class NewsForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['status'].empty_label = "Выбрать статус"
+#    def __init__(self, *args, **kwargs):
+#        super().__init__(*args, **kwargs)
+#        self.fields['status'].empty_label = "Выбрать статус"
 
     class Meta:
         model = News
-        fields = '__all__'
+        fields = ['name', 'description']
         widgets ={
             'description': forms.Textarea(attrs={'cols': 70, 'rows': 10})
         }

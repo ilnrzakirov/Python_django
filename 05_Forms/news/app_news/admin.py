@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import News, NewsComment, User, Profile
+from .models import News, NewsComment, User, Profile, Categories
 # Register your models here.
 
 
@@ -42,3 +42,7 @@ class NewsCommentAdmin(admin.ModelAdmin):
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ['id', 'user', 'city', 'verification']
+
+@admin.register(Categories)
+class CatAdmin(admin.ModelAdmin):
+    list_display = ['name']

@@ -11,7 +11,7 @@ class NewsListView(ListView):
     model = News
     template_name = 'news/news.html'
     context_object_name = 'news'
-    queryset = News.objects.all()
+    queryset = News.objects.filter(status= 'a')
 
 
 class NewsDetailFormView(View):
@@ -41,6 +41,7 @@ class NewsDetailFormView(View):
 class NewsCreate(UserPassesTestMixin, CreateView):
     form_class = NewsForm
     template_name = 'news/news_create.html'
+    success_url = '/news/'
 
     def test_func(self):
         return self.request.user.profile.verification == True
