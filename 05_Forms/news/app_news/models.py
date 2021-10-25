@@ -51,6 +51,9 @@ class NewsComment(models.Model):
 class Categories(models.Model):
     name = models.CharField(max_length=50, verbose_name='Категории')
 
+    def __str__(self):
+        return f'{self.name}'
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.IntegerField(default=0, validators=[MinValueValidator(1111111111), MaxValueValidator(9999999999)])

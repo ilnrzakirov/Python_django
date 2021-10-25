@@ -1,4 +1,4 @@
-
+{% load news_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
     <title>Новости</title>
 </head>
 <body>
-
+        {% get_categories as cat %}
        <div class="block-top-auth">
            {% if request.user.is_authenticated %}
            <p><a href="{% url 'logout' %}">Logout</a></p>
@@ -17,6 +17,10 @@
            {% endif %}
        </div>
     <h1>Новости</h1>
+        <p>Теги</p>
+        {% for c in cat %}
+            <p>{{ c }}</p>
+        {% endfor %}
        {% if request.user.is_authenticated %}
         <a href="{% url 'news-create' %}" type="get">Добавить новость</a>
        {% endif %}
