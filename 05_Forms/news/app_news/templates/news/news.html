@@ -19,7 +19,7 @@
     <h1>Новости</h1>
         <p>Теги</p>
         {% for c in cat %}
-            <p>{{ c }}</p>
+            <p><a href="/news/?category={{ c.pk }}">{{ c.name }}</a> </p>
         {% endfor %}
        {% if request.user.is_authenticated %}
         <a href="{% url 'news-create' %}" type="get">Добавить новость</a>

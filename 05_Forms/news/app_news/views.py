@@ -1,3 +1,4 @@
+import requests
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, redirect
@@ -8,10 +9,14 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 class NewsListView(ListView):
-    model = News
+    # model = News.objects.filter(categories=)
     template_name = 'news/news.html'
     context_object_name = 'news'
     queryset = News.objects.filter(status= 'a')
+
+    def get_queryset(self):
+        queryset = self.request.GET['category']
+        return News.objects.filter(categories=queryset)
 
 
 class NewsDetailFormView(View):
