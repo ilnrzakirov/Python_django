@@ -9,14 +9,16 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 class NewsListView(ListView):
-    # model = News.objects.filter(categories=)
+    # model = News.objects.all()
     template_name = 'news/news.html'
     context_object_name = 'news'
     queryset = News.objects.filter(status= 'a')
 
     def get_queryset(self):
-        queryset = self.request.GET['category']
-        return News.objects.filter(categories=queryset)
+        queryset = super().get_queryset()
+        if 'category' in self.request.GET:
+            queryset = queryset.filter(categories_id=self.request.GET['category'])
+        return queryset
 
 
 class NewsDetailFormView(View):
@@ -52,11 +54,14 @@ class NewsCreate(UserPassesTestMixin, CreateView):
         return self.request.user.profile.verification == True
 
 
-class NewsEdit(UpdateView):
+class NewsEdit(UserPassesTestMixin, UpdateView):
     form_class = NewsForm
     model = News
     template_name = 'news/news_update_form.html'
     success_url = '/news/'
+
+    def test_func(self):
+        return self.request.user.profile.verification == True
 
 
 
