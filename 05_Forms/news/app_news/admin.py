@@ -9,7 +9,7 @@ class NewsCommentInline(admin.TabularInline):
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ['name', 'created_at', 'status']
+    list_display = ['name', 'description', 'status']
     list_filter = ['status']
 
     inlines = [NewsCommentInline]
