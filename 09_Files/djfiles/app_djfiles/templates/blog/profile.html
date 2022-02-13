@@ -5,15 +5,15 @@
     <title>Профиль</title>
 </head>
 <body>
-<p><a href="{% url 'profile-edit' pk=user.id %}">Редактировать</a></p>
+<p><a href="{% url 'profile-edit' pk=request.user.profile.id %}">Редактировать</a></p>
 <h2>Профиль</h2>
-<p> {% if form.0.avatar %}
-        <img src="{{ form.0.avatar.url }}">
+<p> {% if request.user.profile.avatar %}
+        <img src="{{ request.user.profile.avatar.url }}">
 {% endif %}</p>
-<p>{{ form.0.user }}</p>
-<p>{{ form.0.user.first_name }} {{ form.0.user.last_name }}</p>
-<p>{{ form.0.phone }}</p>
-<p>{{ form.0.city }}</p>
-<p>Verification: {{ form.0.verification }}</p>
+<p>{{ request.user.profile.user }}</p>
+<p>{{ request.user.profile.user.first_name }} {{ request.user.profile.user.last_name }}</p>
+<p>{{ request.user.profile.phone }}</p>
+<p>{{ request.user.profile.city }}</p>
+<p>Verification: {{ request.user.profile.verification }}</p>
 </body>
 </html>

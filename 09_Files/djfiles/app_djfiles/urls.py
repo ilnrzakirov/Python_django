@@ -8,12 +8,12 @@ urlpatterns = [
     path('register/', views.register_view, name='register'),
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
-    path('profile/', views.profile_view, name='profile'),
+    path('profile/', views.ProfileView.as_view(), name='profile'),
     path('blog/create/', views.Create.as_view(), name='create'),
     path('blog/<int:pk>', views.BlogDetailFormView.as_view(), name='blog-detail'),
     path('blog/edit/<int:pk>', views.BlogEdit.as_view(), name='blog-edit'),
-    path('blog/profile_edit/<int:pk>', views.ProfileEdit, name='profile-edit'),
-    path('blog/upload', views.upload_artic, name='upload-file'),
+    path('blog/profile_edit/<int:pk>', views.ProfileEditView.as_view(), name='profile-edit'),
+    path('blog/upload', views.UploadArtic.as_view(), name='upload-file'),
     ]
 
 if settings.DEBUG:

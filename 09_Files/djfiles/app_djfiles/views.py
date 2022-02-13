@@ -1,5 +1,4 @@
 from _csv import reader
-
 from django import forms
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -8,8 +7,9 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
 import requests
 from django.template.defaultfilters import truncatechars
+from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, TemplateView, FormView
 from .models import Blog, Profile, File
 from .forms import RegisterForm, BlogForm, ProfileForm, UploadArticForm
 
@@ -35,8 +35,7 @@ class Create(UserPassesTestMixin, CreateView):
     def form_valid(self, form):
         files = self.request.FILES.getlist('file')
         name = form.cleaned_data['name']
-        form.save()
-        id = form.instance
+        id = form.save()
         for item in files:
             instance = File(blog=id, file=item)
             instance.save()
@@ -72,15 +71,20 @@ def register_view(request):
         form = RegisterForm()
     return render(request, 'blog/register.html', context={'form': form})
 
-def profile_view(request):
-    form = Profile.objects.filter(user=request.user)
-    return render(request, 'blog/profile.html', context={'form': form})
+class ProfileView(TemplateView):
+    # form = Profile.objects.filter(user=request.user)
+    # return render(request, 'blog/profile.html', context={'form': form})
+    template_name = 'blog/profile.html'
+    model = Profile
 
-class BlogDetailFormView(View):
-    def get(self, request, pk):
-        blog = Blog.objects.get(id=pk)
-        image = File.objects.filter(blog=blog)
-        return render(request, 'blog/blog_detail.html', context={'blog' : blog, 'pk' : pk, 'image': image})
+class BlogDetailFormView(DetailView):
+    model = Blog
+    template_name = 'blog/blog_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogDetailFormView, self).get_context_data(**kwargs)
+        context['image'] = File.objects.filter(blog=self.object)
+        return context
 
 class BlogEdit(UserPassesTestMixin, UpdateView):
     form_class = BlogForm
@@ -90,6 +94,14 @@ class BlogEdit(UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.request.user.profile.verification == True
+
+
+class ProfileEditView(UpdateView):
+    model = Profile
+    form_class = ProfileForm
+    template_name = 'blog/prfile_update_form.html'
+    success_url = reverse_lazy('profile')
+
 
 def ProfileEdit(request, pk):
     if request.method == 'POST':
@@ -112,6 +124,21 @@ def ProfileEdit(request, pk):
         form = ProfileForm()
     return render(request, 'blog/prfile_update_form.html', context={'form': form})
 
+
+class UploadArtic(FormView):
+    form_class = UploadArticForm
+    template_name = 'blog/upload_artic_csv.html'
+    success_url = '/blog/'
+
+    def form_valid(self, form):
+        upload_file = UploadArticForm(self.request.POST, self.request.FILES)
+        if upload_file.is_valid():
+            file = upload_file.cleaned_data['file'].read()
+            artic = file.decode('utf-8').split('\n')
+            csv_f = reader(artic, delimiter=",", quotechar='"')
+            for row in csv_f:
+                Blog.objects.create(name=row[0], description=row[1])
+        return super().form_valid(form)
 
 def upload_artic(request):
     if request.method == 'POST':
