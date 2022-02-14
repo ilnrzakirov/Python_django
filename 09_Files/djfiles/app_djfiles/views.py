@@ -41,12 +41,15 @@ class Create(UserPassesTestMixin, CreateView):
             instance.save()
         return super().form_valid(form)
 
+
 class LoginView(LoginView):
     template_name = 'blog/login.html'
     next_page = '/blog/'
 
+
 class LogoutView(LogoutView):
     next_page = '/blog/'
+
 
 def register_view(request):
     if request.method == 'POST':
@@ -71,11 +74,13 @@ def register_view(request):
         form = RegisterForm()
     return render(request, 'blog/register.html', context={'form': form})
 
+
 class ProfileView(TemplateView):
     # form = Profile.objects.filter(user=request.user)
     # return render(request, 'blog/profile.html', context={'form': form})
     template_name = 'blog/profile.html'
     model = Profile
+
 
 class BlogDetailFormView(DetailView):
     model = Blog
@@ -85,6 +90,7 @@ class BlogDetailFormView(DetailView):
         context = super(BlogDetailFormView, self).get_context_data(**kwargs)
         context['image'] = File.objects.filter(blog=self.object)
         return context
+
 
 class BlogEdit(UserPassesTestMixin, UpdateView):
     form_class = BlogForm
@@ -100,18 +106,20 @@ class ProfileEditView(UpdateView):
     model = Profile
     form_class = ProfileForm
     template_name = 'blog/prfile_update_form.html'
-    success_url = reverse_lazy('profile')
+    success_url = '/profile/'
 
 
 def ProfileEdit(request, pk):
     if request.method == 'POST':
-        form = ProfileForm(request.POST)
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             user = User.objects.get(username=request.user.username)
             profile = Profile.objects.get(user=user)
             raw_password = form.cleaned_data.get('password1')
             phone = form.cleaned_data.get('phone')
             city = form.cleaned_data.get('city')
+            avatar = form.cleaned_data['avatar']
+            profile.avatar = avatar
             profile.phone = phone
             profile.city = city
             user.set_password(raw_password)
@@ -139,6 +147,7 @@ class UploadArtic(FormView):
             for row in csv_f:
                 Blog.objects.create(name=row[0], description=row[1])
         return super().form_valid(form)
+
 
 def upload_artic(request):
     if request.method == 'POST':

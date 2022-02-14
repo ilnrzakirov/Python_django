@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User, AbstractUser
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+
 class Blog(models.Model):
     name = models.CharField(max_length=1000, verbose_name="Название")
     description = models.CharField(max_length=1000, verbose_name="Содрежание", default='')
@@ -19,3 +20,4 @@ class Profile(models.Model):
     city = models.CharField(max_length=20, blank=True)
     verification = models.BooleanField(default=False)
     avatar = models.ImageField(default=None, upload_to='files/')
+

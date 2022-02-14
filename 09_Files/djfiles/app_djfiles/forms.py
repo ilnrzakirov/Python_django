@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.forms import inlineformset_factory
+
 from .models import Blog, Profile
 
 
@@ -29,7 +31,7 @@ class ProfileForm(UserCreationForm):
     last_name = forms.CharField(max_length=20, required=False, help_text='Фамилия')
     phone = forms.IntegerField(max_value=9999999999, min_value=1111111111, help_text='Номер телефона без 8')
     city = forms.CharField(max_length=20, required=False, help_text='Город')
-    avatar = forms.FileField()
+    avatar = forms.ImageField()
 
     class Meta:
         model = User
@@ -38,3 +40,4 @@ class ProfileForm(UserCreationForm):
 
 class UploadArticForm(forms.Form):
     file = forms.FileField()
+
