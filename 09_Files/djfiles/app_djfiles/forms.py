@@ -41,3 +41,20 @@ class ProfileForm(UserCreationForm):
 class UploadArticForm(forms.Form):
     file = forms.FileField()
 
+class ProfileNewForm(forms.ModelForm):
+    phone = forms.IntegerField(max_value=9999999999, min_value=1111111111, help_text='Номер телефона без 8')
+    city = forms.CharField(max_length=20, required=False, help_text='Город')
+    avatar = forms.ImageField()
+
+    class Meta:
+        model = Profile
+        fields = ('city', 'phone', 'avatar')
+
+class UserForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=20, required=False, help_text='Имя')
+    last_name = forms.CharField(max_length=20, required=False, help_text='Фамилия')
+    password = forms.CharField(max_length=100)
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'password')

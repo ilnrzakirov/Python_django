@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, TemplateView, FormView
 from .models import Blog, Profile, File
-from .forms import RegisterForm, BlogForm, ProfileForm, UploadArticForm
+from .forms import RegisterForm, BlogForm, ProfileForm, UploadArticForm, UserForm, ProfileNewForm
 
 
 class BlogListView(ListView):
@@ -80,6 +80,42 @@ class ProfileView(TemplateView):
     # return render(request, 'blog/profile.html', context={'form': form})
     template_name = 'blog/profile.html'
     model = Profile
+
+class ProfileNewEdit(TemplateView):
+    template_name = 'blog/prfile_update_form.html'
+    model = Profile
+
+    def get(self, request, *args, **kwargs):
+        user_form = UserForm
+        profile_form = ProfileNewForm
+        context = super(ProfileNewEdit, self).get_context_data(**kwargs)
+        context['user'] = user_form
+        context['profile'] = profile_form
+        return render(request, 'blog/prfile_update_form.html', context={'form': user_form, 'profile': profile_form})
+
+    def post(self, request, *args, **kwargs):
+        form = UserForm(request.POST)
+        form_profile = ProfileNewForm(request.POST, request.FILES)
+        if form.is_valid() and form_profile.is_valid():
+            user = User.objects.get(username=request.user.username)
+            profile = Profile.objects.get(user=user)
+            raw_password = form.cleaned_data.get('password')
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            user.set_password(raw_password)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+            city = form_profile.cleaned_data.get('city')
+            phone = form_profile.cleaned_data.get('phone')
+            avatar = form_profile.cleaned_data.get('avatar')
+            profile.phone = phone
+            profile.city = city
+            profile.avatar = avatar
+            profile.save()
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect('/blog/')
 
 
 class BlogDetailFormView(DetailView):
