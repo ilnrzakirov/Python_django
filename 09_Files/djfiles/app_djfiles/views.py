@@ -86,16 +86,16 @@ class ProfileNewEdit(TemplateView):
     model = Profile
 
     def get(self, request, *args, **kwargs):
-        user_form = UserForm
-        profile_form = ProfileNewForm
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileNewForm(instance=request.user.profile)
         context = super(ProfileNewEdit, self).get_context_data(**kwargs)
         context['user'] = user_form
         context['profile'] = profile_form
         return render(request, 'blog/prfile_update_form.html', context={'form': user_form, 'profile': profile_form})
 
     def post(self, request, *args, **kwargs):
-        form = UserForm(request.POST)
-        form_profile = ProfileNewForm(request.POST, request.FILES)
+        form = UserForm(request.POST, instance=request.user)
+        form_profile = ProfileNewForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid() and form_profile.is_valid():
             user = User.objects.get(username=request.user.username)
             profile = Profile.objects.get(user=user)
