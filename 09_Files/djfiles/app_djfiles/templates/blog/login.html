@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-<h2>СТраница входа</h2>
+{% extends "blog/base.html" %}
+{% block title %}Вход{% endblock %}
+{% block context %}
+<h2>Страница входа</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Вход</button>
 </form>
-</body>
-</html>
+{% endblock %}
