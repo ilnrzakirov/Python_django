@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ blog.name }}{% endblock %}
 {% block context %}
-<a href="{% url 'blog-edit' pk=blog.id %}">Редактировать</a>
+<a href="{% url 'blog-edit' pk=blog.id %}">{% trans "Редактировать" %}</a>
 <h1>{{ blog.name }}</h1>
 <p>{{ blog.created_at }}</p>
 <p>{{ blog.description }}</p>

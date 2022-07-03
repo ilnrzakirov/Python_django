@@ -1,19 +1,19 @@
 {% extends "blog/base.html" %}
-{% block title %}Blog{% endblock %}
+{% block title %}{% trans "Блог" %}{% endblock %}
 {% block context %}
        <div class="block-top-auth">
            {% if request.user.is_authenticated %}
            <p><a href="{% url 'logout' %}">Logout</a></p>
-               <p><a href="{% url 'profile' %}">Профиль</a> </p>
+               <p><a href="{% url 'profile' %}">{% trans "Профиль" %}</a> </p>
            {% else %}
            <p><a href="{% url 'login' %}">Login</a></p>
-               <p><a href="{% url 'register' %}">Регистрация</a> </p>
+               <p><a href="{% url 'register' %}">{% trans "Регистрация" %}</a> </p>
            {% endif %}
        </div>
     <h1>Блог</h1>
        {% if request.user.is_authenticated %}
-        <a href="{% url 'create' %}" type="get">Добавить запись</a>
-           <a href="{% url 'upload-file' %}" type="get">Добавить файлом</a>
+        <a href="{% url 'create' %}" type="get">{% trans "Добавить запись" %}</a>
+           <a href="{% url 'upload-file' %}" type="get">{% trans "Добавить файлом" %}</a>
        {% endif %}
     {% if blog %}
     <ul>
@@ -25,6 +25,6 @@
         {% endfor %}
     </ul>
     {%  else %}
-        <p>Записей нет</p>
+        <p>{% trans "Записей нет"%}</p>
     {% endif %}
 {% endblock %}
