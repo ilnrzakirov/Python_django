@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Импорт статей</title>
-</head>
-<body>
+{% extends "blog/base.html" %}
+{% block title %}Импорт статей{% endblock %}
+{% block context %}
     <h2>Загрузка</h2>
 
 <form method="post" enctype="multipart/form-data">
@@ -12,5 +8,4 @@
     {{ form.as_p }}
     <button type="submit">Загрузить</button>
 </form>
-</body>
-</html>
+{% endblock %}
