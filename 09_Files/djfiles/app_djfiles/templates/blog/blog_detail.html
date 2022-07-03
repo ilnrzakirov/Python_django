@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ blog.name }}</title>
-</head>
-<body>
+{% extends "blog/base.html" %}
+{% block title %}{{ blog.name }}{% endblock %}
+{% block context %}
 <a href="{% url 'blog-edit' pk=blog.id %}">Редактировать</a>
 <h1>{{ blog.name }}</h1>
 <p>{{ blog.created_at }}</p>
@@ -14,5 +10,4 @@
         <img src="{{ item.file.url }}" alt="image">
     {% endfor %}
 {% endif %}
-</body>
-</html>
+{% endblock %}

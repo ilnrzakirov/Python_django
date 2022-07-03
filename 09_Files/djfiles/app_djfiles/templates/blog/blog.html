@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-{% load i18n %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Блог></title>
-</head>
-<body>
+{% extends "blog/base.html" %}
+{% block title %}Blog{% endblock %}
+{% block context %}
        <div class="block-top-auth">
            {% if request.user.is_authenticated %}
            <p><a href="{% url 'logout' %}">Logout</a></p>
@@ -32,5 +27,4 @@
     {%  else %}
         <p>Записей нет</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}
