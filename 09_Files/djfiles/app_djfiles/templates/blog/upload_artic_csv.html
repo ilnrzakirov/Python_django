@@ -1,11 +1,11 @@
 {% extends "blog/base.html" %}
-{% block title %}Импорт статей{% endblock %}
+{% block title %}{% trans "Импорт статей" %}{% endblock %}
 {% block context %}
-    <h2>Загрузка</h2>
+    <h2>{% trans "Загрузка" %}</h2>
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Загрузить</button>
+    <button type="submit">{% trans "Загрузить" %}</button>
 </form>
 {% endblock %}

@@ -1,10 +1,10 @@
 {% extends "blog/base.html" %}
-{% block title %}Вход{% endblock %}
+{% block title %}{% trans "Вход" %}{% endblock %}
 {% block context %}
-<h2>Страница входа</h2>
+<h2>{% trans "Страница входа" %}</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Вход</button>
+    <button type="submit">{% trans "Вход" %}</button>
 </form>
 {% endblock %}
