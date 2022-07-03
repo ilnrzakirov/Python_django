@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Профиль</title>
-</head>
-<body>
+{% extends "blog/base.html" %}
+{% block title %}Профиль пользователя{% endblock %}
+{% block context %}
 <p><a href="{% url 'profile-edit' pk=request.user.profile.id %}">Редактировать</a></p>
 <h2>Профиль</h2>
 <p> {% if request.user.profile.avatar %}
@@ -15,5 +11,4 @@
 <p>{{ request.user.profile.phone }}</p>
 <p>{{ request.user.profile.city }}</p>
 <p>Verification: {{ request.user.profile.verification }}</p>
-</body>
-</html>
+{% endblock %}
