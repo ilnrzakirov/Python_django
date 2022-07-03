@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -14,6 +14,7 @@ urlpatterns = [
     path('blog/edit/<int:pk>', views.BlogEdit.as_view(), name='blog-edit'),
     path('blog/profile_edit/<int:pk>', views.ProfileNewEdit.as_view(), name='profile-edit'),
     path('blog/upload/', views.UploadArtic.as_view(), name='upload-file'),
+    path('i18n', include('django.conf.urls.i18n')),
     ]
 
 if settings.DEBUG:
