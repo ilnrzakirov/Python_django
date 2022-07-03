@@ -1,0 +1,104 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-03 15:28+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app_djfiles/templates/blog/blog.html:3
+msgid "Блог"
+msgstr "Blog"
+
+#: app_djfiles/templates/blog/blog.html:8
+#: app_djfiles/templates/blog/profile.html:6
+msgid "Профиль"
+msgstr "Profile"
+
+#: app_djfiles/templates/blog/blog.html:11
+#: app_djfiles/templates/blog/register.html:3
+#: app_djfiles/templates/blog/register.html:5
+msgid "Регистрация"
+msgstr "Registration"
+
+#: app_djfiles/templates/blog/blog.html:16
+msgid "Добавить запись"
+msgstr "Add news"
+
+#: app_djfiles/templates/blog/blog.html:17
+msgid "Добавить файлом"
+msgstr "Add news as a file"
+
+#: app_djfiles/templates/blog/blog.html:29
+msgid "Записей нет"
+msgstr "There are no records"
+
+#: app_djfiles/templates/blog/blog_detail.html:5
+#: app_djfiles/templates/blog/profile.html:5
+msgid "Редактировать"
+msgstr "Edit"
+
+#: app_djfiles/templates/blog/blog_form.html:3
+msgid "Создать новость"
+msgstr "Create news"
+
+#: app_djfiles/templates/blog/blog_form.html:5
+msgid "Добавить новость"
+msgstr "Add news"
+
+#: app_djfiles/templates/blog/blog_form.html:9
+msgid "Добавить"
+msgstr "Add"
+
+#: app_djfiles/templates/blog/blog_update_form.html:3
+#: app_djfiles/templates/blog/blog_update_form.html:5
+#: app_djfiles/templates/blog/prfile_update_form.html:3
+#: app_djfiles/templates/blog/prfile_update_form.html:5
+msgid "Редактирование"
+msgstr "Edit"
+
+#: app_djfiles/templates/blog/blog_update_form.html:9
+#: app_djfiles/templates/blog/prfile_update_form.html:10
+msgid "Сохранить"
+msgstr "Save"
+
+#: app_djfiles/templates/blog/login.html:3
+#: app_djfiles/templates/blog/login.html:9
+msgid "Вход"
+msgstr "Sign in"
+
+#: app_djfiles/templates/blog/login.html:5
+msgid "Страница входа"
+msgstr "Login"
+
+#: app_djfiles/templates/blog/profile.html:3
+msgid "Профиль пользователя"
+msgstr "Profile"
+
+#: app_djfiles/templates/blog/register.html:9
+msgid "Зарегистрироваться"
+msgstr "Sign up"
+
+#: app_djfiles/templates/blog/upload_artic_csv.html:3
+msgid "Импорт статей"
+msgstr "Import news"
+
+#: app_djfiles/templates/blog/upload_artic_csv.html:5
+msgid "Загрузка"
+msgstr "Load"
+
+#: app_djfiles/templates/blog/upload_artic_csv.html:10
+msgid "Загрузить"
+msgstr "Load news"
