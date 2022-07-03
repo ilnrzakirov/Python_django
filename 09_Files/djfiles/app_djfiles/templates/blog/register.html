@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Регистрация</title>
-</head>
-<body>
+{% extends "blog/base.html" %}
+{% block title %}Регистрация{% endblock %}
+{% block context %}
 <h2>Регистрация</h2>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Sign up</button>
 </form>
-</body>
-</html>
+{% endblock %}
