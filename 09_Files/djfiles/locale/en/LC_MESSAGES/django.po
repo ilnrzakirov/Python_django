@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-03 15:20+0000\n"
+"POT-Creation-Date: 2022-07-04 09:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,87 +18,131 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: app_djfiles/apps.py:8
+msgid "Новости"
+msgstr "News"
+
+#: app_djfiles/models.py:9
+msgid "Название"
+msgstr "Name"
+
+#: app_djfiles/models.py:10
+msgid "Содрежание"
+msgstr "Edit"
+
+#: app_djfiles/models.py:11
+msgid "Дата создания"
+msgstr "Create data"
+
+#: app_djfiles/models.py:12
+msgid "Дата редактирования"
+msgstr "Edit"
+
+#: app_djfiles/models.py:15 app_djfiles/models.py:16
+msgid "блог"
+msgstr "blog"
+
+#: app_djfiles/models.py:19
+msgid "Изображение"
+msgstr "Images"
+
+#: app_djfiles/models.py:23
+msgid "файлы"
+msgstr "files"
+
+#: app_djfiles/models.py:24
+msgid "файл"
+msgstr "file"
+
+#: app_djfiles/models.py:34
+msgid "профили"
+msgstr "Profiles"
+
+#: app_djfiles/models.py:35
+msgid "профиль"
+msgstr "Profile"
+
 #: app_djfiles/templates/blog/blog.html:3
 msgid "Блог"
-msgstr ""
+msgstr "Blog"
 
 #: app_djfiles/templates/blog/blog.html:8
 #: app_djfiles/templates/blog/profile.html:6
 msgid "Профиль"
-msgstr ""
+msgstr "Profile"
 
 #: app_djfiles/templates/blog/blog.html:11
 #: app_djfiles/templates/blog/register.html:3
 #: app_djfiles/templates/blog/register.html:5
 msgid "Регистрация"
-msgstr ""
+msgstr "Registration"
 
 #: app_djfiles/templates/blog/blog.html:16
 msgid "Добавить запись"
-msgstr ""
+msgstr "Add news"
 
 #: app_djfiles/templates/blog/blog.html:17
 msgid "Добавить файлом"
-msgstr ""
+msgstr "Add news as a file"
 
 #: app_djfiles/templates/blog/blog.html:29
 msgid "Записей нет"
-msgstr ""
+msgstr "Nothing"
 
 #: app_djfiles/templates/blog/blog_detail.html:5
 #: app_djfiles/templates/blog/profile.html:5
 msgid "Редактировать"
-msgstr ""
+msgstr "Edit"
 
 #: app_djfiles/templates/blog/blog_form.html:3
 msgid "Создать новость"
-msgstr ""
+msgstr "Create news"
 
 #: app_djfiles/templates/blog/blog_form.html:5
 msgid "Добавить новость"
-msgstr ""
+msgstr "Add news"
 
 #: app_djfiles/templates/blog/blog_form.html:9
 msgid "Добавить"
-msgstr ""
+msgstr "Add"
 
 #: app_djfiles/templates/blog/blog_update_form.html:3
 #: app_djfiles/templates/blog/blog_update_form.html:5
 #: app_djfiles/templates/blog/prfile_update_form.html:3
 #: app_djfiles/templates/blog/prfile_update_form.html:5
 msgid "Редактирование"
-msgstr ""
+msgstr "Edit"
 
 #: app_djfiles/templates/blog/blog_update_form.html:9
 #: app_djfiles/templates/blog/prfile_update_form.html:10
 msgid "Сохранить"
-msgstr ""
+msgstr "Save"
 
 #: app_djfiles/templates/blog/login.html:3
 #: app_djfiles/templates/blog/login.html:9
 msgid "Вход"
-msgstr ""
+msgstr "Sign in"
 
 #: app_djfiles/templates/blog/login.html:5
 msgid "Страница входа"
-msgstr ""
+msgstr "Login"
 
 #: app_djfiles/templates/blog/profile.html:3
 msgid "Профиль пользователя"
-msgstr ""
+msgstr "Profile"
 
 #: app_djfiles/templates/blog/register.html:9
 msgid "Зарегистрироваться"
-msgstr ""
+msgstr "Sign up"
 
 #: app_djfiles/templates/blog/upload_artic_csv.html:3
 msgid "Импорт статей"
-msgstr ""
+msgstr "Import news"
 
 #: app_djfiles/templates/blog/upload_artic_csv.html:5
 msgid "Загрузка"
-msgstr ""
+msgstr "Load"
 
 #: app_djfiles/templates/blog/upload_artic_csv.html:10
 msgid "Загрузить"
-msgstr ""
+msgstr "Load news"
